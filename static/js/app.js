@@ -232,7 +232,7 @@ const App = {
     return `
       <div class="stream-card" onclick="App.openItemModal('${item.id}')">
         <div class="card-poster-wrapper">
-          <img src="${item.poster}" alt="${item.title}" class="card-poster" loading="lazy" />
+          <img src="${item.poster}" alt="${item.title}" class="card-poster" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80';" />
           <div class="card-overlay-gradient"></div>
           
           <span class="card-match-tag">${item.confidence || 95}% Match</span>

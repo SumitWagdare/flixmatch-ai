@@ -177,12 +177,12 @@ header.stream-header.scrolled {
   font-size: 0.82rem;
   font-family: var(--font-main);
   outline: none;
-  width: 190px;
+  width: 220px;
   transition: all 0.3s ease;
 }
 
 .search-input:focus {
-  width: 250px;
+  width: 280px;
   border-color: rgba(255, 255, 255, 0.4);
   background: rgba(0, 0, 0, 0.85);
 }
@@ -232,13 +232,14 @@ header.stream-header.scrolled {
 }
 
 /* ==============================================================================
-   HERO BILLBOARD (SIGNATURE STREAMING FEATURE)
+   HERO BILLBOARD (SIGNATURE STREAMING FEATURE - OPTIMIZED VIEWPORT HEIGHT)
    ============================================================================== */
 .hero-billboard {
   position: relative;
   width: 100%;
-  height: 82vh;
-  min-height: 580px;
+  height: 60vh;
+  min-height: 420px;
+  max-height: 520px;
   display: flex;
   align-items: center;
   padding: 0 4%;
@@ -255,16 +256,16 @@ header.stream-header.scrolled {
   right: 0;
   bottom: 0;
   background: 
-    linear-gradient(77deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 45%, transparent 75%),
-    linear-gradient(180deg, transparent 60%, rgba(20, 20, 20, 0.8) 85%, #141414 100%);
+    linear-gradient(77deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.6) 45%, transparent 75%),
+    linear-gradient(180deg, transparent 55%, rgba(20, 20, 20, 0.8) 85%, #141414 100%);
   pointer-events: none;
 }
 
 .hero-billboard-content {
   position: relative;
   z-index: 2;
-  max-width: 650px;
-  margin-top: 40px;
+  max-width: 640px;
+  margin-top: 24px;
 }
 
 .hero-match-badge-row {
@@ -673,13 +674,14 @@ header.stream-header.scrolled {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 14px;
+  padding: 16px 12px 12px 12px;
   z-index: 2;
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.75) 35%, rgba(10, 10, 10, 0.96) 100%);
 }
 
 .card-title {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 800;
   color: #ffffff;
   line-height: 1.25;
@@ -687,15 +689,15 @@ header.stream-header.scrolled {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 .card-meta-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.75rem;
+  gap: 6px;
+  font-size: 0.74rem;
   color: var(--text-muted);
-  margin-bottom: 8px;
 }
 
 .card-rating-star {
@@ -706,14 +708,18 @@ header.stream-header.scrolled {
   display: flex;
   align-items: center;
   gap: 8px;
+  max-height: 0;
   opacity: 0;
+  overflow: hidden;
   transform: translateY(6px);
-  transition: all 0.2s ease;
+  transition: all 0.25s var(--ease-netflix);
 }
 
 .stream-card:hover .card-hover-actions {
+  max-height: 40px;
   opacity: 1;
   transform: translateY(0);
+  margin-top: 8px;
 }
 
 .btn-circle-action {
