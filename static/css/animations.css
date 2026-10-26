@@ -1,0 +1,52 @@
+/* ==============================================================================
+   FlixMatch AI - Streaming Animations & Micro-interactions
+   ============================================================================== */
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.match-percentage-badge {
+  animation: pulse-subtle 3s infinite ease-in-out;
+}
+
+/* Subtle card shimmer on hover */
+@keyframes netflix-shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(200%) rotate(45deg); }
+}
+
+.stream-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stream-card:hover::after {
+  opacity: 1;
+  animation: netflix-shimmer 2s infinite;
+}
+
+/* Fade in for dynamic row updates */
+@keyframes rowFadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stream-row-section {
+  animation: rowFadeIn 0.4s ease backwards;
+}

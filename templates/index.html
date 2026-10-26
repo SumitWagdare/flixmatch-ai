@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlixMatch AI &bull; Intelligent Streaming & Reading Recommendations</title>
+  <meta name="description" content="Discover movies and books curated by intelligent AI logic rules matching your exact mood, social context, and cognitive energy.">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/animations.css">
+</head>
+<body>
+
+  <!-- Top Streaming Header (Netflix Style) -->
+  <header class="stream-header">
+    <div class="header-left">
+      <a class="brand-logo" onclick="App.filterCategory('all')">
+        <span>FLIXMATCH</span>
+        <span class="ai-tag">AI</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li class="nav-link-item active" data-filter="all"><a>Home</a></li>
+          <li class="nav-link-item" data-filter="movies"><a>Movies</a></li>
+          <li class="nav-link-item" data-filter="books"><a>Books</a></li>
+          <li class="nav-link-item" data-filter="top_picks"><a>Top AI Picks</a></li>
+          <li class="nav-link-item" data-filter="watchlist"><a>My List</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="header-right">
+      <!-- Search -->
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="streamSearchInput" class="search-input" placeholder="Titles, genres, directors..." autocomplete="off">
+      </div>
+
+      <!-- AI Vibe Matcher Toggle -->
+      <button class="btn-vibe-toggle" id="btnToggleTuning">
+        <span>⚡</span> AI Vibe Filter
+      </button>
+
+      <!-- Profile Avatar -->
+      <div class="user-avatar-btn" title="Account & Preferences">
+        <span>👤</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Collapsible AI Fine-Tuning Drawer -->
+  <section class="ai-tuning-drawer" id="aiTuningDrawer">
+    <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; margin-bottom: 16px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+      <span>🎛</span> Fine-Tune AI Recommendation Parameters
+    </div>
+    <div class="tuning-grid">
+      <div>
+        <label class="tuning-label">Social Setting / Viewing With</label>
+        <select id="selectCompanion" class="tuning-select">
+          <option value="solo">Solo Viewing (Deep Immersion)</option>
+          <option value="date_night">Date Night (Engaging & Romantic)</option>
+          <option value="friends">Friends Group (Fun & Thrilling)</option>
+          <option value="family">Family (Universal Appeal)</option>
+          <option value="party">Party (High Energy & Fast)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="tuning-label">Narrative Pacing & Tempo</label>
+        <select id="selectTempo" class="tuning-select">
+          <option value="slow_burn">Slow-Burn (Atmospheric & Patient)</option>
+          <option value="moderate">Moderate (Balanced Flow)</option>
+          <option value="fast_paced">Fast-Paced (Action & Twists)</option>
+          <option value="intense">Intense (Edge-of-Your-Seat)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="tuning-label">Cognitive Bandwidth / Energy</label>
+        <select id="selectCognitive" class="tuning-select">
+          <option value="deeply_philosophical">Deep Philosophy & Existential</option>
+          <option value="mind_bending">Mind-Bending & Complex Puzzles</option>
+          <option value="balanced">Balanced & Engaging</option>
+          <option value="light_easy">Light & Easy Relaxation</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Billboard (Netflix Featured Title) -->
+  <section class="hero-billboard" id="heroBillboard">
+    <div class="hero-vignette"></div>
+
+    <div class="hero-billboard-content">
+      <div class="hero-match-badge-row">
+        <span class="match-percentage-badge" id="heroMatchScore">98% Match</span>
+        <span style="color: var(--text-muted);" id="heroItemYear">2014</span>
+        <span class="streaming-quality-badge" id="heroItemAge">16+</span>
+        <span class="streaming-quality-badge" id="heroItemRuntime">2h 49m</span>
+        <span class="streaming-quality-badge" id="heroItemQuality">4K Ultra HD</span>
+      </div>
+
+      <h1 class="hero-title" id="heroItemTitle">Interstellar</h1>
+
+      <div class="hero-ai-reason-chip" id="heroAIReason">
+        <span>🧠 FlixMatch AI:</span> Recommended based on your reflective mood and preference for epic, mind-bending world-building.
+      </div>
+
+      <p class="hero-synopsis" id="heroItemSynopsis">
+        When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft along with a team of researchers to find a new planet for humanity.
+      </p>
+
+      <div class="hero-actions-row">
+        <button class="btn-play-hero" onclick="App.playItem()">
+          <span>▶</span> Play Preview
+        </button>
+        <button class="btn-info-hero" id="btnHeroWatchlist">
+          <span>➕</span> My List
+        </button>
+        <button class="btn-info-hero" onclick="if(App.currentHeroItem) App.openItemModal(App.currentHeroItem.id)">
+          <span>ℹ</span> More Info
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Fast Mood Bar -->
+  <section class="mood-fast-bar">
+    <div class="mood-pills-scroll">
+      <button class="mood-chip-btn active" data-mood="reflective" data-cog="deeply_philosophical" data-tempo="slow_burn">
+        <span>🧠</span> Mind-Bending
+      </button>
+      <button class="mood-chip-btn" data-mood="exhausted" data-cog="light_easy" data-tempo="moderate">
+        <span>☕</span> Cozy & Chill
+      </button>
+      <button class="mood-chip-btn" data-mood="joyful" data-cog="balanced" data-tempo="fast_paced">
+        <span>🍿</span> Party & Friends
+      </button>
+      <button class="mood-chip-btn" data-mood="tense" data-cog="mind_bending" data-tempo="intense">
+        <span>⚡</span> Adrenaline Rush
+      </button>
+      <button class="mood-chip-btn" data-mood="curious" data-cog="deeply_philosophical" data-tempo="moderate">
+        <span>🌌</span> Deep Philosophical
+      </button>
+    </div>
+  </section>
+
+  <!-- Streaming Rows (Carousels) -->
+  <main class="streaming-rows-wrapper" id="streamingRowsContainer">
+    <!-- Injected dynamically via app.js -->
+  </main>
+
+  <!-- Netflix Item Preview Modal -->
+  <div class="stream-modal-backdrop" id="streamModal" onclick="if(event.target === this) App.closeItemModal()">
+    <div class="stream-modal-container" id="streamModalContent">
+      <!-- Injected dynamically via app.js -->
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
